@@ -10,6 +10,10 @@ class Patient extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function appointments() {
+        return $this->hasMany(Appointments::class);
+    }
+
     protected $fillable = [
         'firstname',
         'lastname',

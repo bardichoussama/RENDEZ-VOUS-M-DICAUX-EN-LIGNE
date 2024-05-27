@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone');
             $table->foreignId('specialty_id')->nullable()->constrained('specialties');
             $table->integer('years_of_exp')->nullable();
+            $table->decimal('consultation_price')->nullable();
             $table->text('about')->nullable();
             $table->string('image')->nullable();
             $table->string('address')->nullable();

@@ -2,7 +2,7 @@
 @section('main')
 <div class="flex items-center w-full h-full gap-x-4">
     <div class="w-1/2 h-full p-6 bg-white rounded-sm shadow dark:border dark:bg-gray-800 dark:border-gray-700">
-        <a class="flex-none text-2xl font-bold text-gray-800 dark:text-white" href="#" aria-label="Brand">
+        <a class="flex-none text-2xl font-bold text-gray-800 dark:text-white" href="/" aria-label="Brand">
             W<span class="text-primary">e</span> Car<span class="text-primary">e</span>
         </a>
         <div class="px-24 py-4 mt-12 space-y-4 ">

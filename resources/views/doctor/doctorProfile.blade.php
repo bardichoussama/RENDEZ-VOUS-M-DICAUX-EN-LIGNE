@@ -1,11 +1,8 @@
 @extends('layouts.doctorMasterPage')
 
 @section('main')
-
-
-
     <p class="text-2xl font-medium font-rubik">Profile</p>
-    
+
 
     <div class="flex flex-wrap gap-x-1">
         <div class="flex flex-col w-72 gap-y-1 ">
@@ -43,20 +40,20 @@
                     </div>
                 </div>
                 @if ($doctorInfo)
-          
-                <div class="relative flex flex-col items-center pb-10">
+                    <div class="relative flex flex-col items-center pb-10">
 
-                    <img class="object-cover w-24 h-24 mb-3 rounded-full shadow-lg"
-                        src="{{ asset('assets/img/docprofile.jpg') }}" alt="" />
-                    <span
-                        class="inline-flex items-center px-1.5 py-1 text-xs font-semibold text-white rounded-full bg-primary absolute mt-20">
-                        ★ 4.5
-                    </span>
+                        <img class="object-cover w-24 h-24 mb-3 rounded-full shadow-lg"
+                            src="{{ asset('assets/img/docprofile.jpg') }}" alt="" />
+                        <span
+                            class="inline-flex items-center px-1.5 py-1 text-xs font-semibold text-white rounded-full bg-primary absolute mt-20">
+                            ★ 4.5
+                        </span>
 
-                    <p class="mb-1 text-xl font-medium text-gray-900 font-rubik dark:text-white ">Dr.{{ $doctorInfo->first_name }} {{ $doctorInfo->last_name }}</p>
-                    <p class="text-xs font-normal text-sideBcolor dark:text-gray-400 font-rubik"></p>
+                        <p class="mb-1 text-xl font-medium text-gray-900 font-rubik dark:text-white ">
+                            Dr.{{ $doctorInfo->first_name }} {{ $doctorInfo->last_name }}</p>
+                        <p class="text-xs font-normal text-sideBcolor dark:text-gray-400 font-rubik"></p>
 
-                </div>
+                    </div>
             </div>
             <div class="p-2 font-medium bg-white rounded-xs">
                 <p class="">Socials</p>
@@ -112,7 +109,7 @@
 
             </div>
             @endif
-      
+
 
         </div>
         <div class="flex flex-col w-1/4 h-screen gap-y-1 ">
@@ -128,22 +125,21 @@
                             src="{{ asset('assets/img/patient.jpg') }}" alt="" />
                         <p class="block text-sm font-normal">Mimchel clark<span
                                 class="block text-xs normale text-sideBcolor">10-05-2024</span></p>
-                                <span
-                                class="inline-flex items-center px-1.5 py-0.5 text-xs font-medium text-white rounded-full bg-primary ml-14">
-                                ★ 4.5
-                            </span>
+                        <span
+                            class="inline-flex items-center px-1.5 py-0.5 text-xs font-medium text-white rounded-full bg-primary ml-14">
+                            ★ 4.5
+                        </span>
 
                     </div>
-                    <p class="mx-2 my-2 text-sm font-normal text-gray-600">I diagnose and treat allergies and immune system disorders,
+                    <p class="mx-2 my-2 text-sm font-normal text-gray-600">I diagnose and treat allergies and immune system
+                        disorders,
                         improve their quality of life.</p>
                 </div>
-                
+
             </div>
 
 
         </div>
 
     </div>
-    
-
 @endsection

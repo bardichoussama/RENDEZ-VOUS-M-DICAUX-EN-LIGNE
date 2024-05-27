@@ -39,7 +39,7 @@
                 </li>
                 <li>
                     <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-base text-sideBcolor rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
-                        href="#">
+                        href="{{ route('patientsRequests') }}">
                         <ion-icon class="text-lg text-sideBcolor" name="person-add-outline"></ion-icon>
                         Requestes
                     </a>
@@ -53,7 +53,7 @@
                 </li>
                 <li>
                     <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-base text-sideBcolor rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
-                        href="#">
+                        href="{{ route('doctorProfileView') }}">
                         <ion-icon class="text-lg text-sideBcolor" name="person-outline"></ion-icon>
                         Profile
                     </a>

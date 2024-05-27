@@ -22,7 +22,7 @@ class DoctorLogin extends Controller
         if (Auth::guard('doctor')->attempt($credentials)) {
             $request->session()->regenerate();
             // Authentication successful, redirect to doctor profile
-            return redirect()->route('doctorProfile');
+            return redirect()->route('doctorProfileView');
         }
 
         // Authentication failed, redirect back with error message

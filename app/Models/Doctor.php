@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Doctor extends Authenticatable
 {
+
     use HasFactory, Notifiable;
 
     protected $fillable = [
@@ -30,4 +31,20 @@ class Doctor extends Authenticatable
     {
         return $this->belongsTo(Specialty::class);
     }
+    
+    public function completedAppointments()
+    {
+        return $this->hasMany(Appointment::class)->where('status', 'completed');
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
