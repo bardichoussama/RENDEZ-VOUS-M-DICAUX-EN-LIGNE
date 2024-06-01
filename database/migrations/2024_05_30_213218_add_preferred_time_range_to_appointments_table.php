@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('appointments', function (Blueprint $table) {
-            //
+            
+         $table->enum('preferred_time_range', ['start_of_week', 'midweek', 'end_of_week', 'next_week'])->nullable()->after('duration');
+
         });
     }
 

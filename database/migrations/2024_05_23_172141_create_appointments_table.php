@@ -16,16 +16,16 @@ return new class extends Migration
             $table->id('appointment_id');
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('patient_id');
-            $table->dateTime('requested_date'); 
+            $table->dateTime('requested_date');
             $table->integer('duration');
-            $table->dateTime('confirmed_date')->nullable(); 
+            $table->date('confirmed_date')->nullable();
             $table->time('start_time')->nullable();
-            $table->time('start_time')->nullable();
-            $table->dateTime('appointment_date')->nullable(); 
-            $table->decimal('price', 10, 2); 
+            $table->time('end_time')->nullable();
+            $table->date('appointment_date')->nullable();
+            $table->decimal('price', 10, 2);
             $table->enum('status', ['pending', 'confirmed', 'completed', 'cancelled'])->default('pending');
-            $table->text('message'); 
-            $table->timestamps(); 
+            $table->text('message');
+            $table->timestamps();
 
             // Foreign keys
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');

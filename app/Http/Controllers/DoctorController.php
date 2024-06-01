@@ -21,8 +21,7 @@ class DoctorController extends Controller
         $doctors = Doctor::with(['completedAppointments', 'specialty'])
             ->withCount('completedAppointments as nbAppointments')
             ->get();
-        $pid = Auth()->guard('patient')->id();
-        return view('patient.patientDoctorsList', compact('specialties', 'totalDoctors', 'doctors', 'pid'));
+        return view('patient.patientDoctorsList', compact('specialties', 'totalDoctors', 'doctors'));
     }
 
     public function requestAppointments(Request $request, $doctorId)
@@ -32,8 +31,9 @@ class DoctorController extends Controller
         $validatedData = $request->validate([
             'appMessage' => 'required|string|max:255',
             'duration' => 'required|integer|min:30',
-            'startTime' => 'required|date_format:H:i',
-            'endTime' => 'required|date_format:H:i|after:startTime',
+            'preferred_time_range' => 'required|in:start_of_week,midweek,end_of_week,next_week'
+            // 'startTime' => 'required|date_format:H:i',
+            // 'endTime' => 'required|date_format:H:i|after:startTime',
         ]);
     
         if ($validatedData['duration'] % SLOT_DURATION !== 0) {
@@ -48,16 +48,18 @@ class DoctorController extends Controller
     
         $totalSlots = $validatedData['duration'] / SLOT_DURATION;
         $totalPrice = $doctor->consultation_price * $totalSlots;
+
+        
     
         // Create a new appointment      
         $requestAppointments = new Appointment();
         $requestAppointments->doctor_id = $doctor->id;
         $requestAppointments->patient_id = auth()->guard('patient')->id();
         $requestAppointments->requested_date = now();
-        $requestAppointments->message = $validatedData['appMessage'];
-        $requestAppointments->message = $validatedData['appMessage'];
         $requestAppointments->duration = $validatedData['duration']; 
+        $requestAppointments->preferred_time_range = $validatedData['preferred_time_range'];
         $requestAppointments->price = $totalPrice;
+        $requestAppointments->message = $validatedData['appMessage'];
         $requestAppointments->status = 'pending';
         $requestAppointments->save();
     
@@ -66,3 +68,7 @@ class DoctorController extends Controller
     
     
 }
+
+// $requestAppointments->end_time = $validatedData['endTime'];
+//         
+// $requestAppointments->start_time = $validatedData['startTime'];

@@ -36,6 +36,8 @@ class Doctor extends Authenticatable
     {
         return $this->hasMany(Appointment::class)->where('status', 'completed');
     }
+
+   
 }
 
 

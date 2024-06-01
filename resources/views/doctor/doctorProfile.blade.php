@@ -19,31 +19,13 @@
                                 d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
                         </svg>
                     </button>
-                    <!-- Dropdown menu -->
-                    <div id="dropdown"
-                        class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2" aria-labelledby="dropdownButton">
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export
-                                    Data</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
                 @if ($doctorInfo)
                     <div class="relative flex flex-col items-center pb-10">
-
+                      
                         <img class="object-cover w-24 h-24 mb-3 rounded-full shadow-lg"
-                            src="{{ asset('assets/img/docprofile.jpg') }}" alt="" />
+                            src="{{ $doctorInfo->image }}" alt="" />
                         <span
                             class="inline-flex items-center px-1.5 py-1 text-xs font-semibold text-white rounded-full bg-primary absolute mt-20">
                             ★ 4.5
@@ -59,9 +41,12 @@
                 <p class="">Socials</p>
             </div>
             <div class="flex p-2 bg-white justify-evenly rounded-xs ">
-                <ion-icon class="text-primary" name="logo-linkedin"></ion-icon>
-                <ion-icon class="text-primary" name="logo-instagram"></ion-icon>
-                <ion-icon class="text-primary" name="logo-facebook"></ion-icon>
+                <a href="{{ $doctorInfo->linkedin }}"><ion-icon class="text-primary" name="logo-linkedin"></ion-icon></a>
+                <a href="{{ $doctorInfo->instagram }}"><ion-icon class="text-primary" name="logo-instagram"></ion-icon></a>
+                <a href="{{ $doctorInfo->facebook }}"><ion-icon class="text-primary" name="logo-facebook"></ion-icon></a>
+                
+                
+                
 
             </div>
 
@@ -74,7 +59,7 @@
                 <div class="">
                     <p class="text-xs text-gray-800">Experience</p>
                     <div class="flex w-full p-2 font-medium bg-white rounded-xs gap-x-40">
-                        <p class="text-xs font-normal"><span class="text-lg text-primary">•</span> 5 yrs of ex.</p>
+                        <p class="text-xs font-normal"><span class="text-lg text-primary">•</span> {{ $doctorInfo->years_of_exp }} yrs of ex.</p>
                         <p class="text-xs font-normal"><span class="text-lg text-primary">•</span> 300+ online consultation
                         </p>
                     </div>
@@ -82,29 +67,27 @@
                 <div class="">
                     <p class="text-xs text-gray-800">About Me</p>
                     <div class="flex w-full p-2 font-medium bg-white rounded-xs gap-x-40">
-                        <p class="text-xs font-normal text-sideBcolor"> I diagnose and treat allergies and immune system
-                            disorders, helping patients managesymptoms and
-                            improve their quality of life.</p>
+                        <p class="text-xs font-normal text-sideBcolor"> {{ $doctorInfo->about }}.</p>
                     </div>
 
                 </div>
 
             </div>
             <div class="w-full p-2 font-medium bg-white rounded-xs">
-                <p class="">Contact</p>
+                <p class="">Contact</p>              
             </div>
             <div class="flex justify-around w-full p-2 font-medium bg-white rounded-xs">
                 <div class="flex items-center gap-x-1">
                     <ion-icon class="text-sm font-normal text-primary" name="location-outline"></ion-icon>
-                    <p class="text-xs font-normal text-gray-800">Sidi Youssef Ben Ali</p>
+                    <p class="text-xs font-normal text-gray-800">{{ $doctorInfo->address }}</p>
                 </div>
                 <div class="flex items-center gap-x-1">
                     <ion-icon class="text-sm font-normal text-primary" name="mail-outline"></ion-icon>
-                    <p class="text-xs font-normal text-gray-800">namisan@gmail.com</p>
+                    <p class="text-xs font-normal text-gray-800">{{ $doctorInfo->email }}</p>
                 </div>
                 <div class="flex items-center gap-x-1">
                     <ion-icon class="text-sm font-normal text-primary" name="call-outline"></ion-icon>
-                    <p class="text-xs font-normal text-gray-800">+212 624658021</p>
+                    <p class="text-xs font-normal text-gray-800">{{ $doctorInfo->phone }}</p>
                 </div>
 
             </div>

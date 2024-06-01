@@ -43,6 +43,12 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'doctor_images' => [
+            'driver' => 'local',
+            'root' => public_path('assets/img/doctorImgs'),
+            'url' => env('APP_URL').'/assets/img/doctorImgs',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

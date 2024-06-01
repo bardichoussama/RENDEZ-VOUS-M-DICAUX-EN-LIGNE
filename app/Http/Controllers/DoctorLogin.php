@@ -20,12 +20,11 @@ class DoctorLogin extends Controller
         ]);
 
         if (Auth::guard('doctor')->attempt($credentials)) {
-            $request->session()->regenerate();
-            // Authentication successful, redirect to doctor profile
+            $request->session()->regenerate();         
             return redirect()->route('doctorProfileView');
         }
 
-        // Authentication failed, redirect back with error message
+     
         return redirect()->route('doctorLoginView')->with('error', 'Invalid email or password.');
     }
 

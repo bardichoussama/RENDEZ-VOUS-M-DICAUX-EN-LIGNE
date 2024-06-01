@@ -11,8 +11,12 @@ class Patient extends Authenticatable
     use HasFactory, Notifiable;
 
     public function appointments() {
-        return $this->hasMany(Appointments::class);
+        return $this->hasMany(Appointment::class);
     }
+    public function pendingAppointments(){
+        return $this->hasMany(Appointment::class)->where('status', 'pending');
+    }
+
 
     protected $fillable = [
         'firstname',

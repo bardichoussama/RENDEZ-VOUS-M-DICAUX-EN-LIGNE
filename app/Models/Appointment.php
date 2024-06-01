@@ -19,6 +19,7 @@ class Appointment extends Model
         'message'
     ];
     use HasFactory;
+    protected $primaryKey = 'appointment_id';
 
     public function doctor() {
         return $this->belongsTo(Doctor::class);
