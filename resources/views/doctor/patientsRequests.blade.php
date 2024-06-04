@@ -85,7 +85,7 @@
                                                                 <input name="start_time" type="time"
                                                                     
                                                                     class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
-                                                                    min="09:00" max="18:00" required />
+                                                                     required />
                                                             </div>
                                                         </div>
                                                         <div>
@@ -106,7 +106,7 @@
                                                                 <input name="end_time" type="time"
                                                                     id="end-time-{{ $req->appointment_id }}"
                                                                     class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
-                                                                    min="09:00" max="18:00" required />
+                                                                   " required />
                                                             </div>
                                                         </div>
                                                     </div>

@@ -19,13 +19,13 @@
                                 d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
                         </svg>
                     </button>
-                    
+
                 </div>
                 @if ($doctorInfo)
                     <div class="relative flex flex-col items-center pb-10">
-                      
-                        <img class="object-cover w-24 h-24 mb-3 rounded-full shadow-lg"
-                            src="{{ $doctorInfo->image }}" alt="" />
+
+                        <img class="object-cover w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ $doctorInfo->image }}"
+                            alt="" />
                         <span
                             class="inline-flex items-center px-1.5 py-1 text-xs font-semibold text-white rounded-full bg-primary absolute mt-20">
                             ★ 4.5
@@ -33,7 +33,8 @@
 
                         <p class="mb-1 text-xl font-medium text-gray-900 font-rubik dark:text-white ">
                             Dr.{{ $doctorInfo->first_name }} {{ $doctorInfo->last_name }}</p>
-                        <p class="text-xs font-normal text-sideBcolor dark:text-gray-400 font-rubik"></p>
+                        <p class="text-xs font-normal text-sideBcolor dark:text-gray-400 font-rubik">
+                            {{ $doctorInfo->specialty->name }}</p>
 
                     </div>
             </div>
@@ -44,9 +45,9 @@
                 <a href="{{ $doctorInfo->linkedin }}"><ion-icon class="text-primary" name="logo-linkedin"></ion-icon></a>
                 <a href="{{ $doctorInfo->instagram }}"><ion-icon class="text-primary" name="logo-instagram"></ion-icon></a>
                 <a href="{{ $doctorInfo->facebook }}"><ion-icon class="text-primary" name="logo-facebook"></ion-icon></a>
-                
-                
-                
+
+
+
 
             </div>
 
@@ -59,7 +60,8 @@
                 <div class="">
                     <p class="text-xs text-gray-800">Experience</p>
                     <div class="flex w-full p-2 font-medium bg-white rounded-xs gap-x-40">
-                        <p class="text-xs font-normal"><span class="text-lg text-primary">•</span> {{ $doctorInfo->years_of_exp }} yrs of ex.</p>
+                        <p class="text-xs font-normal"><span class="text-lg text-primary">•</span>
+                            {{ $doctorInfo->years_of_exp }} yrs of ex.</p>
                         <p class="text-xs font-normal"><span class="text-lg text-primary">•</span> 300+ online consultation
                         </p>
                     </div>
@@ -74,7 +76,7 @@
 
             </div>
             <div class="w-full p-2 font-medium bg-white rounded-xs">
-                <p class="">Contact</p>              
+                <p class="">Contact</p>
             </div>
             <div class="flex justify-around w-full p-2 font-medium bg-white rounded-xs">
                 <div class="flex items-center gap-x-1">

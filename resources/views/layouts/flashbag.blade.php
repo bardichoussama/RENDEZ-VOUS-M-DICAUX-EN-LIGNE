@@ -1,6 +1,6 @@
 @if (session()->has('success'))
-    <!-- Include the alert component -->
-    <x-alert type="success">
+
+    <x-alert type="toast-success">
         {{ session('success') }}
     </x-alert>
 @endif

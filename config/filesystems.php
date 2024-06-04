@@ -49,6 +49,12 @@ return [
             'url' => env('APP_URL').'/assets/img/doctorImgs',
             'visibility' => 'public',
         ],
+        'patient_images' => [
+            'driver' => 'local',
+            'root' => public_path('assets/img/patientImgs'),
+            'url' => env('APP_URL').'/assets/img/patientImgs',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

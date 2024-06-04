@@ -31,10 +31,12 @@ class Patient extends Authenticatable
         'password',
         'allergies',
         'bloodtype',
+        'city',
         'address',
         'facebook',
         'linkedin',
         'instagram',
+        'gender'
     ];
 
     // // Hide the password and remember token fields

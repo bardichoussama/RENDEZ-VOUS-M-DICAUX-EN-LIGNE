@@ -44,11 +44,11 @@
             <div class="relative flex flex-col items-center pb-10">
 
                 <img class="object-cover w-24 h-24 mb-3 rounded-full shadow-lg"
-                    src="{{ asset('assets/img/docprofile.jpg') }}" alt="" />
+                    src="{{ auth()->guard('patient')->user()->image }}" alt="" />
             
 
-                <p class="mb-1 text-xl font-medium text-gray-900 font-rubik dark:text-white ">Dr.</p>
-                <p class="text-sm font-normal text-sideBcolor dark:text-gray-400 font-rubik">25 y.o Marrakech</p>
+                <p class="mb-1 text-xl font-medium text-gray-900 font-rubik dark:text-white ">{{ auth()->guard('patient')->user()->firstname }} {{ auth()->guard('patient')->user()->lastname }}</p>
+                <p class="text-sm font-normal text-sideBcolor dark:text-gray-400 font-rubik">25 y.o {{ auth()->guard('patient')->user()->city }}</p>
 
 
             </div>
@@ -71,46 +71,40 @@
         <div class="flex flex-col w-full p-2 font-medium bg-white rounded-xs" style="height: 201px">
             <div class="flex ">
                 
-                <div class="flex items-center w-full p-2 font-medium bg-white rounded-xs gap-x-1">
+                <div class="flex items-center w-48 p-2 font-medium bg-white rounded-xs gap-x-1 ">
                     <p class="text-lg text-primary">•</p>
                     <p class="text-xs font-medium">Gender :</p>
-                    <p class="text-xs font-normal">Female.</p>
+                    <p class="text-xs font-normal">{{ auth()->guard('patient')->user()->gender }}.</p>
                 </div>
-                <div class="flex items-center w-full p-2 font-medium bg-white rounded-xs gap-x-1">
+                <div class="flex items-center w-48 p-2 font-medium bg-white rounded-xs gap-x-1">
                     <p class="text-lg text-primary">•</p>
-                    <p class="text-xs font-medium">Hight :</p>
-                    <p class="text-xs font-normal">179 cm.</p>
+                    <p class="text-xs font-medium">Height :</p>
+                    <p class="text-xs font-normal">{{ auth()->guard('patient')->user()->height }} cm.</p>
                 </div>
-                <div class="flex items-center w-full p-2 font-medium bg-white rounded-xs gap-x-1">
+                <div class="flex items-center font-medium bg-white w-48p-2 rounded-xs gap-x-1">
                     <p class="text-lg text-primary">•</p>
                     <p class="text-xs font-medium">Weight :</p>
-                    <p class="text-xs font-normal">62 kg</p>
+                    <p class="text-xs font-normal">{{ auth()->guard('patient')->user()->weight }} kg</p>
                 </div>
             </div>
             <div class="flex ">
                 
-                <div class="flex items-center w-full p-2 font-medium bg-white rounded-xs gap-x-1">
+                <div class="flex items-center w-48 p-2 font-medium bg-white rounded-xs gap-x-1">
                     <p class="text-lg text-primary">•</p>
                     <p class="text-xs font-medium">Blode Type :</p>
-                    <p class="text-xs font-normal">O+</p>
+                    <p class="text-xs font-normal">{{ auth()->guard('patient')->user()->blood_type }}</p>
                 </div>
-                <div class="flex items-center w-full p-2 font-medium bg-white rounded-xs gap-x-1">
+                <div class="flex items-center p-2 font-medium w-52 rounded-xs gap-x-1 ">
                     <p class="text-lg text-primary">•</p>
                     <p class="text-xs font-medium">Allergies :</p>
-                    <p class="text-xs font-normal">Pollen</p>
+                    <p class="text-xs font-normal">{{ auth()->guard('patient')->user()->allergies }}</p>
                 </div>
-                <div class="flex items-center w-full p-2 font-medium bg-white rounded-xs gap-x-1">
-                    <p class="text-lg text-primary">•</p>
-                    <p class="text-xs font-medium">Experience:</p>
-                    <p class="text-xs font-normal">5 yrs of ex.</p>
-                </div>
+               
             </div>
             <div class="mt-4">
                 <p class="text-xs text-gray-800">About Me</p>
                 <div class="flex w-full p-2 font-medium bg-white rounded-xs gap-x-40">
-                    <p class="text-xs font-normal text-sideBcolor"> I diagnose and treat allergies and immune system
-                        disorders, helping patients managesymptoms and
-                        improve their quality of life.</p>
+                    <p class="text-xs font-normal text-sideBcolor"> {{ auth()->guard('patient')->user()->bio }}</p>
                 </div>
 
             </div>
@@ -122,15 +116,15 @@
         <div class="flex justify-around w-full p-2 font-medium bg-white rounded-xs">
             <div class="flex items-center gap-x-1">
                 <ion-icon class="text-sm font-normal text-primary" name="location-outline"></ion-icon>
-                <p class="text-xs font-normal text-gray-800">Sidi Youssef Ben Ali</p>
+                <p class="text-xs font-normal text-gray-800">{{ auth()->guard('patient')->user()->address }}</p>
             </div>
             <div class="flex items-center gap-x-1">
                 <ion-icon class="text-sm font-normal text-primary" name="mail-outline"></ion-icon>
-                <p class="text-xs font-normal text-gray-800">namisan@gmail.com</p>
+                <p class="text-xs font-normal text-gray-800">{{ auth()->guard('patient')->user()->email }}</p>
             </div>
             <div class="flex items-center gap-x-1">
                 <ion-icon class="text-sm font-normal text-primary" name="call-outline"></ion-icon>
-                <p class="text-xs font-normal text-gray-800">+212 624658021</p>
+                <p class="text-xs font-normal text-gray-800">{{ auth()->guard('patient')->user()->phone }}</p>
             </div>
 
         </div>
@@ -141,7 +135,7 @@
     <div class="flex flex-col w-1/4 h-screen gap-y-1 ">
         <div class="w-full p-2 font-medium bg-white rounded-xs">
             <p class="">Reviwes <span
-                    class="inline-flex items-center px-1.5 py-1 text-xs font-normal text-primary rounded-full bg-secondary ">
+                    class="inline-flex items-center px-1.5 py-1 text-xs font-normal text-primary rounded-full bg-choiceBody ">
                     +145 </span></p>
         </div>
         <div class="flex flex-col w-full h-full p-2 font-medium bg-white rounded-xs gap-y-2">

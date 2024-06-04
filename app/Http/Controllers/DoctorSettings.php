@@ -16,7 +16,7 @@ class DoctorSettings extends Controller
         $specialties = Specialty::all();
         return view('doctor.doctorSettings', compact('specialties'));
     }
-    // Update Profile Photo
+
     public function updateProfilePhoto(Request $request, $doctorId)
     {
         $request->validate([
@@ -35,7 +35,7 @@ class DoctorSettings extends Controller
     }
 
 
-    // Update Social Accounts
+
     public function updateSocialAccounts(Request $request, $doctorId)
     {
         $request->validate([
@@ -53,43 +53,48 @@ class DoctorSettings extends Controller
         return redirect()->back()->with('status', 'Social accounts updated successfully!');
     }
 
-    // Update General Information
+
     public function updateGeneralInfo(Request $request, $doctorId)
     {
+       
         $request->validate([
-            'first_name' => 'sometimes|string|max:255',
-            'last_name' => 'sometimes|string|max:255',
-            'address' => 'sometimes|string|max:255',
-            'email' => 'sometimes|email|max:255',
-            'phone_number' => 'sometimes|string|max:20',
-            'experience' => 'sometimes|integer|min:1|max:50',
-            'specialtie' => 'sometimes|exists:specialties,id',
-            'price' => 'sometimes|integer',
-            'bio' => 'sometimes|nullable|string|max:1000'
+            'first_name' => 'nullable|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'address' => 'nullable|string|max:255',
+            'phone_number' => 'nullable|string|max:20',
+            'experience' => 'nullable|integer',
+            'specialtie' => 'nullable|exists:specialties,id',
+            'price' => 'nullable|numeric',
+            'bio' => 'nullable|string|max:1000'
         ]);
+    
 
         $doctor = Doctor::findOrFail($doctorId);
+    
+   
         $doctor->first_name = $request->first_name;
         $doctor->last_name = $request->last_name;
         $doctor->address = $request->address;
         $doctor->email = $request->email;
         $doctor->phone = $request->phone_number;
-        $doctor->specialty_id = $request->input('specialtie');
+        $doctor->specialty_id = $request->specialtie;
         $doctor->years_of_exp = $request->experience;
         $doctor->consultation_price = $request->price;
-       
         $doctor->about = $request->bio;
         $doctor->save();
-
-        return redirect()->back()->with('status', 'General information updated successfully!');
+    
+     
+        return redirect()->back()->with('status', 'General information are updated successfully!');
     }
+    
 
-    // Update Password
+
     public function updatePassword(Request $request, $doctorId)
     {
         $request->validate([
             'current_password' => 'required',
-            'new_password' => 'required|string|min:8|confirmed',
+            'new_password' => 'required|string|min:8',
             'confirm_password' => 'required|same:new_password'
         ]);
 

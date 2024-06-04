@@ -19,6 +19,7 @@ class Doctor extends Authenticatable
         'phone',
         'specialty_id',
         'years_of_exp',
+        'consultation_price',
         'about',
         'address',
         'facebook',

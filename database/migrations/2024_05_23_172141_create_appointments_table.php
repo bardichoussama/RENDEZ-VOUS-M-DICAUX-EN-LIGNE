@@ -18,13 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->dateTime('requested_date');
             $table->integer('duration');
-            $table->date('confirmed_date')->nullable();
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->date('appointment_date')->nullable();
             $table->decimal('price', 10, 2);
-            $table->enum('status', ['pending', 'confirmed', 'completed', 'cancelled'])->default('pending');
-            $table->text('message');
+            $table->enum('status', ['pending', 'confirmed','inprogress', 'completed', 'cancelled'])->default('pending');
+            $table->text('patient_message');
+            $table->string('meeting_link')->nullable();
             $table->timestamps();
 
             // Foreign keys

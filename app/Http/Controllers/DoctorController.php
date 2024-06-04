@@ -59,10 +59,9 @@ class DoctorController extends Controller
         $requestAppointments->duration = $validatedData['duration']; 
         $requestAppointments->preferred_time_range = $validatedData['preferred_time_range'];
         $requestAppointments->price = $totalPrice;
-        $requestAppointments->message = $validatedData['appMessage'];
+        $requestAppointments->patient_message = $validatedData['appMessage'];
         $requestAppointments->status = 'pending';
         $requestAppointments->save();
-    
         return redirect()->back()->with('success', 'Appointment request sent successfully.');
     }
     
