@@ -33,6 +33,8 @@ class PatientsRequests extends Controller
             $appointment->start_time = $request->input('start_time');
             $appointment->end_time = $request->input('end_time');
             $appointment->status = 'confirmed';
+            $appointment->meeting_link = $request->input('meetingLink');
+            
             $appointment->save();
 
             return redirect()->back()->with('success', 'Appointment accepted successfully.');
@@ -40,12 +42,15 @@ class PatientsRequests extends Controller
         return redirect()->back()->with('error', 'Appointment not found.');
     }
 
-    public function reject($id)
+    public function reject(Request $request,$id)
     {
         $appointment = Appointment::find($id);
      
         if ($appointment) {
-            $appointment->delete();
+            $appointment->status = 'cancelled';
+            $appointment->reject_reason = $request->input('rejectMessage');
+            $appointment->save();
+            // $appointment->delete();
 
             return redirect()->back()->with('success', 'Appointment rejected successfully.');
         }

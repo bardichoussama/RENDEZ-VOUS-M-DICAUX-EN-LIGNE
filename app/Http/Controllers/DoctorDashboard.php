@@ -12,21 +12,34 @@ class DoctorDashboard extends Controller
         $today = Carbon::today();
 
         $doctorId = auth()->guard('doctor')->id();
-        $todayConsultationsCount = Appointment::where('doctor_id', $doctorId)
+
+        $todayApplicationCount = Appointment::where('doctor_id', $doctorId)
             ->where('status', 'completed')
             ->whereDate('appointment_date', $today)
             ->count();
 
-            
+        $totalConsultationsCount = Appointment::where('doctor_id', $doctorId)
+            ->where('status', 'completed')
+            ->count();
 
-        $appointments = Appointment::with('patient')
+            $totalPatients = Appointment::where('doctor_id', $doctorId)
+            ->where('status', 'completed')
+            ->distinct('patient_id')
+            ->count('patient_id');
+
+        $pendingAppointment = Appointment::with('patient')
+            ->where('doctor_id', $doctorId)
+            ->where('status', 'pending')
+            ->count();
+
+        $todayConsultationsList = Appointment::with('patient')
             ->where('doctor_id', $doctorId)
             ->where('status', 'confirmed')
             ->whereDate('appointment_date', $today)
             ->orderBy('start_time')
             ->get();
 
-        return view('doctor.doctorDashboard', compact('todayConsultationsCount', 'appointments'));
+        return view('doctor.doctorDashboard', compact('todayApplicationCount', 'totalConsultationsCount','pendingAppointment','todayConsultationsList','totalPatients'));
     }
 
 

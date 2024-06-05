@@ -8,8 +8,21 @@
                     <div class="w-full h-24 p-5 bg-white rounded-sm">
                         <div class="flex items-center space-x-1">
                             <div>
-                                <div class="text-2xl font-medium text-gray-900">{{ $todayConsultationsCount }}</div>
+                                <div class="text-2xl font-medium text-gray-900">{{ $todayApplicationCount }}</div>
                                 <div class="text-sm text-gray-400 w-36">Consultation Today</div>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-center rounded-full h-7 w-7 bg-choiceBody">
+                                    <ion-icon class="text-xl text-primary" name="videocam-outline"></ion-icon>                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full h-24 p-5 bg-white rounded-sm">
+                        <div class="flex items-center space-x-1">
+                            <div>
+                                <div class="text-2xl font-medium text-gray-900">{{ $pendingAppointment }}</div>
+                                <div class="text-sm text-gray-400 w-36">Pending</div>
                             </div>
                             <div>
                                 <div class="flex items-center justify-center rounded-full h-7 w-7 bg-choiceBody">
@@ -21,8 +34,8 @@
                     <div class="w-full h-24 p-5 bg-white rounded-sm">
                         <div class="flex items-center space-x-1">
                             <div>
-                                <div class="text-2xl font-medium text-gray-900">14</div>
-                                <div class="text-sm text-gray-400 w-36">Consultation Today</div>
+                                <div class="text-2xl font-medium text-gray-900">{{ $totalConsultationsCount }}</div>
+                                <div class="text-sm text-gray-400 w-36">Total Consultation</div>
                             </div>
                             <div>
                                 <div class="flex items-center justify-center rounded-full h-7 w-7 bg-choiceBody">
@@ -34,25 +47,13 @@
                     <div class="w-full h-24 p-5 bg-white rounded-sm">
                         <div class="flex items-center space-x-1">
                             <div>
-                                <div class="text-2xl font-medium text-gray-900">14</div>
-                                <div class="text-sm text-gray-400 w-36">Consultation Today</div>
+                                <div class="text-2xl font-medium text-gray-900">{{ $totalPatients }}</div>
+                                <div class="text-sm text-gray-400 w-36">Patient</div>
                             </div>
                             <div>
                                 <div class="flex items-center justify-center rounded-full h-7 w-7 bg-choiceBody">
-                                    <ion-icon class="text-xl text-primary" name="hourglass-outline"></ion-icon>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full h-24 p-5 bg-white rounded-sm">
-                        <div class="flex items-center space-x-1">
-                            <div>
-                                <div class="text-2xl font-medium text-gray-900">14</div>
-                                <div class="text-sm text-gray-400 w-36">Consultation Today</div>
-                            </div>
-                            <div>
-                                <div class="flex items-center justify-center rounded-full h-7 w-7 bg-choiceBody">
-                                    <ion-icon class="text-xl text-primary" name="hourglass-outline"></ion-icon>
+                                    <ion-icon class="text-xl text-primary" name="people-outline"></ion-icon>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -96,11 +97,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($appointments as $appointment)
+                                    @foreach ($todayConsultationsList as $consultation)
                                         @php
                                             $currentTime = Carbon\Carbon::now();
-                                            $startTime = Carbon\Carbon::parse($appointment->start_time);
-                                            $endTime = Carbon\Carbon::parse($appointment->end_time);
+                                            $startTime = Carbon\Carbon::parse($consultation->start_time);
+                                            $endTime = Carbon\Carbon::parse($consultation->end_time);
                                             $isInProgress = $currentTime->between($startTime, $endTime);
                                         @endphp
                                         <tr
@@ -108,14 +109,14 @@
                                             <th scope="row"
                                                 class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                                 <img class="w-10 h-10 rounded-full"
-                                                    src="{{ $appointment->patient->image ?? 'default-avatar.png' }}"
+                                                    src="{{ $consultation->patient->image ?? 'default-avatar.png' }}"
                                                     alt="Patient image">
                                                 <div class="ps-3">
                                                     <div class="text-base font-semibold">
-                                                        {{ $appointment->patient->firstname }}
-                                                        {{ $appointment->patient->lastname }}</div>
+                                                        {{ $consultation->patient->firstname }}
+                                                        {{ $consultation->patient->lastname }}</div>
                                                     <div class="font-normal text-gray-500">
-                                                        {{ $appointment->patient->email }}</div>
+                                                        {{ $consultation->patient->email }}</div>
                                                 </div>
                                             </th>
                                             <td class="px-6 py-4">
@@ -126,16 +127,15 @@
                                             </td>
                                             <td class="px-6 py-4">
                                                 @if ($isInProgress)
-                                                    <a href="{{ $appointment->meeting_link }}"
+                                                    <a href="{{ $consultation->meeting_link }}"
                                                         class="flex items-center justify-center px-2 py-1 font-medium text-white rounded-sm gap-x-1 bg-primary">
                                                         <ion-icon class="text-white" name="play-circle"></ion-icon> Start
                                                     </a>
                                                 @else
-                                                    <button
-                                                        class="flex items-center justify-center px-2 py-1 font-medium text-white bg-gray-400 rounded-sm cursor-not-allowed gap-x-1"
-                                                        disabled>
-                                                        <ion-icon class="text-white" name="play-circle"></ion-icon> Start
-                                                    </button>
+                                                <a href="{{ $consultation->meeting_link }}"
+                                                    class="flex items-center justify-center px-2 py-1 font-medium text-white bg-gray-400 rounded-sm gap-x-1">
+                                                    <ion-icon class="text-white" name="play-circle"></ion-icon> Start
+                                                </a>
                                                 @endif
                                             </td>
                                         </tr>

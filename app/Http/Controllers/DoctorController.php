@@ -31,7 +31,7 @@ class DoctorController extends Controller
         $validatedData = $request->validate([
             'appMessage' => 'required|string|max:255',
             'duration' => 'required|integer|min:30',
-            'preferred_time_range' => 'required|in:start_of_week,midweek,end_of_week,next_week'
+            'preferred_time_range' => 'required|in:SELECT * FROM medicalwebapplication.appointments;urgent,start_of_week,midweek,end_of_week,next_week,anytime'
             // 'startTime' => 'required|date_format:H:i',
             // 'endTime' => 'required|date_format:H:i|after:startTime',
         ]);
@@ -61,6 +61,8 @@ class DoctorController extends Controller
         $requestAppointments->price = $totalPrice;
         $requestAppointments->patient_message = $validatedData['appMessage'];
         $requestAppointments->status = 'pending';
+        
+
         $requestAppointments->save();
         return redirect()->back()->with('success', 'Appointment request sent successfully.');
     }

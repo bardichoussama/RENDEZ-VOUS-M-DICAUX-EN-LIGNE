@@ -20,6 +20,9 @@ class Appointment extends Model
     ];
     use HasFactory;
     protected $primaryKey = 'appointment_id';
+    protected $casts = [
+        'requested_date' => 'datetime',
+    ];
 
     public function doctor() {
         return $this->belongsTo(Doctor::class);

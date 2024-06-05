@@ -19,12 +19,13 @@ return new class extends Migration
             $table->dateTime('requested_date');
             $table->integer('duration');
             $table->time('start_time')->nullable();
-            $table->time('end_time')->nullable();
+           
             $table->date('appointment_date')->nullable();
             $table->decimal('price', 10, 2);
             $table->enum('status', ['pending', 'confirmed','inprogress', 'completed', 'cancelled'])->default('pending');
             $table->text('patient_message');
-            $table->string('meeting_link')->nullable();
+            $table->text('meeting_link')->nullable();
+            $table->text('reject_reason')->nullable();
             $table->timestamps();
 
             // Foreign keys

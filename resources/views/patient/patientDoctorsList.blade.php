@@ -98,10 +98,12 @@
                                                             <select name="preferred_time_range"
                                                                 id="preferred_time_range-{{ $doctor->id }}"
                                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                                <option value="urgent">Urgent</option>
                                                                 <option value="start_of_week">Start of Week</option>
                                                                 <option value="midweek">Midweek</option>
                                                                 <option value="end_of_week">End of Week</option>
                                                                 <option value="next_week">Next Week</option>
+                                                                <option value="anytime">Any Time</option>
                                                             </select>
                                                             @error('preferred_time_range')
                                                                 <div class="text-xs text-red-500">{{ $message }}</div>

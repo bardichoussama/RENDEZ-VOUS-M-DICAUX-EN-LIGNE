@@ -30,7 +30,7 @@ Route::get('/doctor/todays-appointments', [DoctorDashboard::class, 'getTodaysApp
 Route::get('/doctorAppointments', [DoctorAppointments::class, 'index'])->name('listAppointments');
 Route::get('/patientsRequests', [PatientsRequests::class, 'index'])->name('patientsRequests');
 Route::post('/edit-Appointments/{id}', [PatientsRequests::class, 'accept'])->name('editAppointments');
-Route::delete('/drop-Appointments/{id}', [PatientsRequests::class, 'reject'])->name('dropAppointments');
+Route::put('/drop-Appointments/{appId}', [PatientsRequests::class, 'reject'])->name('rejectAppointments');
 Route::get('/doctorProfile', [DoctorProfile::class, 'index'])->name('doctorProfileView');
 
 //doctor settings
