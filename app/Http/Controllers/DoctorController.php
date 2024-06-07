@@ -26,11 +26,11 @@ class DoctorController extends Controller
 
     public function requestAppointments(Request $request, $doctorId)
     {
-        define('SLOT_DURATION', 30);
+        define('SLOT_DURATION', 3);
     
         $validatedData = $request->validate([
             'appMessage' => 'required|string|max:255',
-            'duration' => 'required|integer|min:30',
+            'duration' => 'required|integer|min:3',
             'preferred_time_range' => 'required|in:SELECT * FROM medicalwebapplication.appointments;urgent,start_of_week,midweek,end_of_week,next_week,anytime'
             // 'startTime' => 'required|date_format:H:i',
             // 'endTime' => 'required|date_format:H:i|after:startTime',

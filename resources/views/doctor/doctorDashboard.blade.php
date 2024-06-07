@@ -87,8 +87,7 @@
                                 </div>
                             </div>
                             <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
-                                <thead
-                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" class="px-6 py-3">Patient</th>
                                         <th scope="col" class="px-6 py-3">Start Time</th>
@@ -99,24 +98,21 @@
                                 <tbody>
                                     @foreach ($todayConsultationsList as $consultation)
                                         @php
+                                           
                                             $currentTime = Carbon\Carbon::now();
                                             $startTime = Carbon\Carbon::parse($consultation->start_time);
-                                            $endTime = Carbon\Carbon::parse($consultation->end_time);
+                                            $duration = $consultation->duration; 
+                                            $endTime = $startTime->copy()->addMinutes($duration);
                                             $isInProgress = $currentTime->between($startTime, $endTime);
+                                            $isUpcoming = $currentTime->lessThan($startTime);
+                                            $isPast = $currentTime->greaterThan($endTime);
                                         @endphp
-                                        <tr
-                                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                            <th scope="row"
-                                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                                <img class="w-10 h-10 rounded-full"
-                                                    src="{{ $consultation->patient->image ?? 'default-avatar.png' }}"
-                                                    alt="Patient image">
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                                <img class="w-10 h-10 rounded-full" src="{{ $consultation->patient->image ?? 'default-avatar.png' }}" alt="Patient image">
                                                 <div class="ps-3">
-                                                    <div class="text-base font-semibold">
-                                                        {{ $consultation->patient->firstname }}
-                                                        {{ $consultation->patient->lastname }}</div>
-                                                    <div class="font-normal text-gray-500">
-                                                        {{ $consultation->patient->email }}</div>
+                                                    <div class="text-base font-semibold">{{ $consultation->patient->firstname }} {{ $consultation->patient->lastname }}</div>
+                                                    <div class="font-normal text-gray-500">{{ $consultation->patient->email }}</div>
                                                 </div>
                                             </th>
                                             <td class="px-6 py-4">
@@ -126,24 +122,30 @@
                                                 {{ $endTime->format('h:i A') }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                @if ($isInProgress)
-                                                    <a href="{{ $consultation->meeting_link }}"
-                                                        class="flex items-center justify-center px-2 py-1 font-medium text-white rounded-sm gap-x-1 bg-primary">
+                                                @if ($isUpcoming)
+                                                    <a href="#" class="flex items-center justify-center px-2 py-1 font-medium text-white bg-gray-400 rounded-sm gap-x-1">
                                                         <ion-icon class="text-white" name="play-circle"></ion-icon> Start
                                                     </a>
-                                                @else
-                                                <a href="{{ $consultation->meeting_link }}"
-                                                    class="flex items-center justify-center px-2 py-1 font-medium text-white bg-gray-400 rounded-sm gap-x-1">
-                                                    <ion-icon class="text-white" name="play-circle"></ion-icon> Start
-                                                </a>
+                                                @elseif ($isInProgress)
+                                                    <a href="{{ $consultation->meeting_link }}" class="flex items-center justify-center px-2 py-1 font-medium text-white rounded-sm bg-primary gap-x-1">
+                                                        <ion-icon class="text-white" name="play-circle"></ion-icon> Start
+                                                    </a>
+                                                @elseif ($isPast)
+                                                    <form action="{{ route('completedAppointments',['appId' => $consultation->appointment_id])}}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit" class="flex items-center justify-center px-2 py-1 font-medium text-white rounded-sm bg-primary gap-x-1">
+                                                            <ion-icon class="text-white" name="checkmark-circle"></ion-icon> Done
+                                                        </button>
+                                                    </form>
                                                 @endif
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-
-
                             </table>
+                            
+                            
                         </div>
                     </div>
                 </div>

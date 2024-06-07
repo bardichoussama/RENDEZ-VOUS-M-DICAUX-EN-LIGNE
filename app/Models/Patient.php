@@ -10,14 +10,6 @@ class Patient extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    public function appointments() {
-        return $this->hasMany(Appointment::class);
-    }
-    public function pendingAppointments(){
-        return $this->hasMany(Appointment::class)->where('status', 'pending');
-    }
-
-
     protected $fillable = [
         'firstname',
         'lastname',
@@ -38,6 +30,23 @@ class Patient extends Authenticatable
         'instagram',
         'gender'
     ];
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+    public function pendingAppointments()
+    {
+        return $this->hasMany(Appointment::class)->where('status', 'pending');
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
+
+
 
     // // Hide the password and remember token fields
     // protected $hidden = [

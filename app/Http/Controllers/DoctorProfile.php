@@ -9,11 +9,11 @@ class DoctorProfile extends Controller
 {
     public function index()
     {
-
         $doctorId = auth()->guard('doctor')->id();
-        $doctorInfo = Doctor::with('specialty')->find($doctorId);
-    
-        
+        $doctorInfo = Doctor::with(['specialty', 'reviews.patient'])
+            ->withCount('reviews') // Include the count of reviews
+            ->find($doctorId);
+
         if ($doctorInfo) {
             return view('doctor.doctorProfile', compact('doctorInfo'));
         } else {
@@ -21,8 +21,6 @@ class DoctorProfile extends Controller
         }
     }
     
-    
-
 }
 
 

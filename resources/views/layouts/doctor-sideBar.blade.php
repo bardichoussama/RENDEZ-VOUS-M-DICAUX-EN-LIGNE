@@ -32,7 +32,7 @@
                 </li>
                 <li>
                     <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-base text-sideBcolor rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
-                        href="{{ route('listAppointments') }}">
+                        href="{{ route('doctorAppointmentsView') }}">
                         <ion-icon class="text-lg text-sideBcolor" name="calendar-outline"></ion-icon>
                         Apointments
                     </a>

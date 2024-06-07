@@ -1,167 +1,129 @@
 @extends('layouts.doctorMasterPage')
 
 @section('main')
-    <section class="py-3 bg-gray-50 dark:bg-gray-900 sm:py-5">
-        <div class="px-4 mx-auto max-w-screen-2xl lg:px-12">
-            <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
-                <div
-                    class="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
-                    <div class="flex items-center flex-1 space-x-4">
-                        <h5>
-                            <span class="text-gray-500">All Products:</span>
-                            <span class="dark:text-white">123456</span>
-                        </h5>
-                        <h5>
-                            <span class="text-gray-500">Total sales:</span>
-                            <span class="dark:text-white">$88.4k</span>
-                        </h5>
-                    </div>
-                    <div
-                        class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
-                        <button type="button"
-                            class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-                            <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path clip-rule="evenodd" fill-rule="evenodd"
-                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
-                            </svg>
-                            Add new product
-                        </button>
-                        <button type="button"
-                            class="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none"
-                                viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                            </svg>
-                            Update stocks 1/250
-                        </button>
-                        <button type="button"
-                            class="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                            </svg>
-                            Export
-                        </button>
+    <div class="">
+        <div class="relative overflow-x-auto sm:rounded-sm">
+            <div
+                class="flex flex-wrap items-center justify-between py-4 space-y-4 bg-white flex-column md:flex-row md:space-y-0 dark:bg-gray-900">
+                <div>
+                    <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
+                        class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                        type="button">
+                        @if ($status)
+                            {{ ucfirst($status) }}
+                        @else
+                            All Status
+                        @endif
+                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div id="dropdownRadio"
+                        class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+                        <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownRadioButton">
+                            <li><a href="{{ route('doctorAppointmentsView') }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">All Status</a></li>
+                            <li><a href="{{ route('doctorAppointmentsView', ['status' => 'pending']) }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Pending</a></li>
+                            <li><a href="{{ route('doctorAppointmentsView', ['status' => 'confirmed']) }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Confirmed</a></li>
+                            <li><a href="{{ route('doctorAppointmentsView', ['status' => 'completed']) }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Completed</a></li>
+                            <li><a href="{{ route('doctorAppointmentsView', ['status' => 'cancelled']) }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">Cancelled</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-4 py-3">Id Appooitnment</th>
-                                <th scope="col" class="px-4 py-3">Patient Full Name</th>
 
-                                <th scope="col" class="px-4 py-3">Appointment Date</th>
-                                <th scope="col" class="px-4 py-3">Start Time</th>
-                                <th scope="col" class="px-4 py-3">End Time</th>
-                                <th scope="col" class="px-4 py-3">Duration</th>
-                                <th scope="col" class="px-4 py-3">Consultation Pricee</th>
-                                <th scope="col" class="px-4 py-3">Status</th>
-                                <th scope="col" class="px-4 py-3">Last Update</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-
-                                <td class="px-4 py-2">
-                                    <span
-                                        class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">#1
-                                        </span>
-                                </td>
-                                <th scope="row"
-                                    class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-                                        alt="iMac Front Image" class="w-auto h-8 mr-3">
-                                    Oussama Bardich
-                                </th>
-                               
-                                <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <div class="flex items-center">
-                                       
-                                        2024-05-31
-                                    </div>
-                                </td>
-                                <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">9:00</td>
-                                <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">9:30</td>
-                                <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <div class="flex items-center">
-                                        
-                                        <span class="ml-1 text-gray-500 dark:text-gray-400">30 min</span>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <div class="flex items-center">
-                                       
-                                        $50
-                                    </div>
-                                </td>
-                                <td class="px-4 py-2">Pending</td>
-                                <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"><ion-icon name="chatbubbles"></ion-icon>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                <label for="table-search" class="sr-only">Search</label>
+                <div class="relative mx-2">
+                    <div class="absolute inset-y-0 flex items-center pointer-events-none rtl:inset-r-0 start-0 ps-3">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </div>
+                    <input type="text" id="table-search-users"
+                        class="block pt-2 text-sm text-gray-900 border border-gray-300 rounded-sm ps-10 w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search for users">
                 </div>
-                <nav class="flex flex-col items-start justify-between p-4 space-y-3 md:flex-row md:items-center md:space-y-0"
-                    aria-label="Table navigation">
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Showing
-                        <span class="font-semibold text-gray-900 dark:text-white">1-10</span>
-                        of
-                        <span class="font-semibold text-gray-900 dark:text-white">1000</span>
-                    </span>
-                    <ul class="inline-flex items-stretch -space-x-px">
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <span class="sr-only">Previous</span>
-                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-current="page"
-                                class="z-10 flex items-center justify-center px-3 py-2 text-sm leading-tight border text-primary-600 bg-primary-50 border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <span class="sr-only">Next</span>
-                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
+
+            <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-4 py-3">Id Appointment</th>
+                        <th scope="col" class="px-4 py-3">Patient Full Name</th>
+                        <th scope="col" class="px-4 py-3">Patient Email</th>
+                        <th scope="col" class="px-4 py-3">Appointment Date</th>
+                        <th scope="col" class="px-4 py-3">Start Time</th>
+                        <th scope="col" class="px-4 py-3">End Time</th>
+                        <th scope="col" class="px-4 py-3">Consultation Price</th>
+                        <th scope="col" class="px-4 py-3">Status</th>
+                        <th scope="col" class="px-4 py-3">Meeting Link</th>
+                        @if ($status == 'cancelled')
+                            <th scope="col" class="px-4 py-3">Message of Reject</th>
+                        @endif
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($appointments as $appointment)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4">#{{ $appointment->appointment_id }}</td>
+                            <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $appointment->patient->first_name }} {{ $appointment->patient->last_name }}
+                            </td>
+                            <td class="px-6 py-4">{{ $appointment->patient->email }}</td>
+                            @php
+                                $duration = $appointment->duration;
+                                $startTime = \Carbon\Carbon::parse($appointment->start_time);
+                                $endTime = $startTime->copy()->addMinutes($duration);
+                                $now = \Carbon\Carbon::now();
+                            @endphp
+                            <td class="px-6 py-4">{{ $appointment->appointment_date }}</td>
+                            @if ($appointment->status !== 'pending')
+                                <td class="px-6 py-4">{{ \Carbon\Carbon::parse($startTime)->format('H:i') }}</td>
+                                <td class="px-6 py-4">{{ \Carbon\Carbon::parse($endTime)->format('H:i') }}</td>
+                            @else
+                                <td class="px-6 py-4">-</td>
+                                <td class="px-6 py-4">-</td>
+                            @endif
+                            <td class="px-6 py-4">{{ $appointment->price }} $</td>
+                            <td class="px-6 py-4">
+                                @if ($appointment->status == 'pending')
+                                    <span
+                                        class="px-2 py-1 text-xs font-medium leading-tight text-yellow-700 bg-yellow-100 rounded-full">Pending</span>
+                                @elseif ($appointment->status == 'confirmed')
+                                    <span
+                                        class="px-2 py-1 text-xs font-medium leading-tight text-green-700 bg-green-100 rounded-full">Confirmed</span>
+                                @elseif ($appointment->status == 'completed')
+                                    <span
+                                        class="px-2 py-1 text-xs font-medium leading-tight text-blue-700 bg-blue-100 rounded-full">Completed</span>
+                                @elseif ($appointment->status == 'cancelled')
+                                    <span
+                                        class="px-2 py-1 text-xs font-medium leading-tight text-red-700 bg-red-100 rounded-full">Cancelled</span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4">
+                                @if ($appointment->status == 'confirmed' || $appointment->status == 'completed')
+                                    <a href="{{ $appointment->meeting_link }}" class="text-blue-600 hover:underline">Join Meeting</a>
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            @if ($status == 'cancelled')
+                                <td class="px-6 py-4">{{ $appointment->reject_reason }}</td>
+                            @endif
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-    </section>
+    </div>
 @endsection

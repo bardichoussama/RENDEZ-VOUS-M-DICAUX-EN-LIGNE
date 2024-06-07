@@ -100,26 +100,27 @@
         <div class="flex flex-col w-1/4 h-screen gap-y-1 ">
             <div class="w-full p-2 font-medium bg-white rounded-xs">
                 <p class="">Reviwes <span
-                        class="inline-flex items-center px-1.5 py-1 text-xs font-normal text-primary rounded-full bg-secondary ">
-                        +145 </span></p>
+                        class="inline-flex items-center justify-center px-1.5 py-1 text-xs w-7  font-medium text-primary rounded-lg bg-choiceBody ">
+                        {{ $doctorInfo->reviews_count }}  </span></p>
             </div>
             <div class="flex flex-col w-full h-full p-2 font-medium bg-white rounded-xs gap-y-2">
-                <div class="h-auto mx-1 border border-gray-200 shadow-sm">
-                    <div class="flex items-center w-full mx-1 my-1 overflow-hidden gap-x-3">
-                        <img class="object-cover w-12 h-12 mb-3 rounded-full shadow-lg"
-                            src="{{ asset('assets/img/patient.jpg') }}" alt="" />
-                        <p class="block text-sm font-normal">Mimchel clark<span
-                                class="block text-xs normale text-sideBcolor">10-05-2024</span></p>
-                        <span
-                            class="inline-flex items-center px-1.5 py-0.5 text-xs font-medium text-white rounded-full bg-primary ml-14">
-                            ★ 4.5
-                        </span>
+                @foreach ($doctorInfo->reviews as $review)
+                    <div class="h-auto mx-1 border border-gray-200 shadow-sm">
+                        <div class="flex items-center w-full mx-1 my-1 overflow-hidden gap-x-3">
+                            <img class="object-cover w-12 h-12 mb-3 rounded-full shadow-lg"
+                                src="{{ $review->patient->image }}" alt="" />
+                            <p class="block text-sm font-normal">{{ $review->patient->firstname }}
+                                {{ $review->patient->lastname }}<span
+                                    class="block text-xs normale text-sideBcolor">{{ $review->created_at }}</span></p>
+                            <span
+                                class="inline-flex items-center px-1.5 py-0.5 text-xs font-medium text-white rounded-full bg-primary ml-14">
+                                ★ {{ $review->rating }}
+                            </span>
 
+                        </div>
+                        <p class="mx-2 my-2 text-sm font-normal text-gray-600">{{ $review->review }}.</p>
                     </div>
-                    <p class="mx-2 my-2 text-sm font-normal text-gray-600">I diagnose and treat allergies and immune system
-                        disorders,
-                        improve their quality of life.</p>
-                </div>
+                @endforeach
 
             </div>
 
