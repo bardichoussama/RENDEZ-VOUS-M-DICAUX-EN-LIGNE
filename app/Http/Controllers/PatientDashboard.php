@@ -18,11 +18,27 @@ class PatientDashboard extends Controller
 
         $listTodayAppointments = Appointment::where('patient_id', $patientId)
             ->whereDate('appointment_date', $today)
+            ->where('status', 'confirmed')
             ->orderBy('start_time')
             ->get();
 
 
-        return view('patient.patientDashboard', compact('appointments'));
+           $pendingAppointments  =Appointment::where('patient_id', $patientId)
+           ->where('status','pending')
+           ->count();
+
+           $rejectedAppointments  =Appointment::where('patient_id', $patientId)
+           ->where('status','cancelled')
+           ->count();
+
+           $consultationTotal  =Appointment::where('patient_id', $patientId)
+           ->where('status','completed')
+           ->count();
+
+       
+
+
+        return view('patient.patientDashboard', compact('listTodayAppointments','pendingAppointments','consultationTotal','rejectedAppointments'));
     }
    
 }

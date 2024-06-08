@@ -8,7 +8,11 @@
                     <div class="w-full h-24 p-5 bg-white rounded-sm">
                         <div class="flex items-center space-x-1">
                             <div>
-                                <div class="text-2xl font-medium text-gray-900"></div>
+
+
+                                <div class="text-2xl font-medium text-gray-900">{{ $consultationTotal }}</div>
+
+
                                 <div class="text-sm text-gray-400 w-36">Consultation Today</div>
                             </div>
                             <div>
@@ -21,7 +25,10 @@
                     <div class="w-full h-24 p-5 bg-white rounded-sm">
                         <div class="flex items-center space-x-1">
                             <div>
-                                <div class="text-2xl font-medium text-gray-900"></div>
+
+
+                                <div class="text-2xl font-medium text-gray-900">{{ $pendingAppointments }}</div>
+
                                 <div class="text-sm text-gray-400 w-36">Pending</div>
                             </div>
                             <div>
@@ -34,8 +41,12 @@
                     <div class="w-full h-24 p-5 bg-white rounded-sm">
                         <div class="flex items-center space-x-1">
                             <div>
-                                <div class="text-2xl font-medium text-gray-900"></div>
-                                <div class="text-sm text-gray-400 w-36">Total Consultation</div>
+
+                                <div class="text-2xl font-medium text-gray-900">{{ $rejectedAppointments }}</div>
+
+
+
+                                <div class="text-sm text-gray-400 w-36">Canceled Consultation</div>
                             </div>
                             <div>
                                 <div class="flex items-center justify-center rounded-full h-7 w-7 bg-choiceBody">
@@ -47,8 +58,13 @@
                     <div class="w-full h-24 p-5 bg-white rounded-sm">
                         <div class="flex items-center space-x-1">
                             <div>
-                                <div class="text-2xl font-medium text-gray-900"></div>
-                                <div class="text-sm text-gray-400 w-36">Patient</div>
+                                @if (!empty($consultationTotal))
+                                    <div class="text-2xl font-medium text-gray-900">{{ $consultationTotal }}</div>
+                                @else
+                                    <div class="text-xl font-normal text-gray-300">N/A</div>
+                                @endif
+
+                                <div class="text-sm text-gray-400 w-36">Consultations Total</div>
                             </div>
                             <div>
                                 <div class="flex items-center justify-center rounded-full h-7 w-7 bg-choiceBody">
@@ -63,29 +79,12 @@
             <div class="flex h-10 gap-x-1">
                 <div class="flex flex-col w-full h-full gap-y-1">
                     <div class="w-full p-2 font-medium bg-white rounded-xs">
-                        <p class="">Appointments</p>
+                        <p class="">Today Consultations</p>
                     </div>
 
                     <div class="">
                         <div class="relative overflow-x-auto sm:rounded-sm">
-                            <div
-                                class="flex flex-wrap items-center justify-between py-4 space-y-4 bg-white flex-column md:flex-row md:space-y-0 dark:bg-gray-900">
 
-                                <label for="table-search" class="sr-only">Search</label>
-                                <div class="relative mx-2">
-                                    <div
-                                        class="absolute inset-y-0 flex items-center pointer-events-none rtl:inset-r-0 start-0 ps-3">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                        </svg>
-                                    </div>
-                                    <input type="text" id="table-search-users"
-                                        class="block pt-2 text-sm text-gray-900 border border-gray-300 rounded-sm ps-10 w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Search for users">
-                                </div>
-                            </div>
                             <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                                 <thead
                                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -97,9 +96,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($listTodayAppointments as $appointment)
+                                    @forelse ($listTodayAppointments as $appointment)
                                         @php
-
                                             $now = \Carbon\Carbon::now();
                                             $startTime = \Carbon\Carbon::parse($appointment->start_time);
                                             $duration = $appointment->duration;
@@ -140,9 +138,15 @@
                                                 </td>
                                             </tr>
                                         @endif
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="px-6 py-4 text-center text-sideBcolor">No Appointments
+                                                Available for today</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>

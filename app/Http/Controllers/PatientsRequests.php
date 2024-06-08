@@ -49,7 +49,7 @@ class PatientsRequests extends Controller
     
     $appointment->save();
 
-    return redirect()->back()->with('success', 'Appointment accepted successfully.');
+    return redirect()->back()->with('status', 'Appointment accepted successfully.');
 }
 
     public function reject(Request $request,$id)
@@ -62,7 +62,7 @@ class PatientsRequests extends Controller
             $appointment->save();
             // $appointment->delete();
 
-            return redirect()->back()->with('success', 'Appointment rejected successfully.');
+            return redirect()->back()->with('status', 'Appointment rejected successfully.');
         }
         return redirect()->back()->with('error', 'Appointment not found.');
     }

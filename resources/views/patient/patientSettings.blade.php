@@ -221,10 +221,10 @@
             </div>
 
 
-            {{-- <div class="p-4 mb-4 bg-white rounded-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div class="p-4 mb-4 bg-white rounded-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div class="flow-root">
                 <h3 class="mb-4 text-xl font-semibold dark:text-white">Change password</h3>
-                <form action="{{ route('updatePasswordPatient') }}" method="POST">
+                <form action="{{ route('updatePasswordPatient',['patientId' => auth()->guard('patient')->user()->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="grid grid-cols-6 gap-6">
@@ -253,7 +253,7 @@
                     </div>
                 </form>
             </div>
-        </div> --}}
+        </div>
         </div>
     </div>
 @endsection

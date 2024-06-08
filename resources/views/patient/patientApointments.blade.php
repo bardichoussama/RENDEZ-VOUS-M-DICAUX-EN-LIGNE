@@ -87,8 +87,8 @@
                                 $now = \Carbon\Carbon::now();
                             @endphp
                             <td class="px-6 py-4">{{ $appointment->appointment_date }}</td>
-                            <td class="px-6 py-4">{{ $appointment->status !== 'pending' ? \Carbon\Carbon::parse($startTime)->format('H:i') : '-' }}</td>
-                            <td class="px-6 py-4">{{ $appointment->status !== 'pending' ? \Carbon\Carbon::parse($endTime)->format('H:i') : '-' }}</td>
+                            <td class="px-6 py-4">{{ $appointment->status !== 'pending' && $appointment->status !== 'cancelled' ? $startTime->format('H:i') : '-' }}</td>
+                            <td class="px-6 py-4">{{ $appointment->status !== 'pending' && $appointment->status !== 'cancelled' ? $endTime->format('H:i') : '-' }}</td>
                             <td class="px-6 py-4">{{ $appointment->price }}</td>
                             <td class="px-6 py-4">
                                 @if ($appointment->status == 'pending')
@@ -173,6 +173,7 @@
                     @endforeach
                 </tbody>
             </table>
+            
         </div>
     </div>
 @endsection

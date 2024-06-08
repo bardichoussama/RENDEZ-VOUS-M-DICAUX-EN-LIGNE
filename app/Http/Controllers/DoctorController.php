@@ -64,7 +64,8 @@ class DoctorController extends Controller
         
 
         $requestAppointments->save();
-        return redirect()->back()->with('success', 'Appointment request sent successfully.');
+        return redirect()->back()->with('status', 'Appointment request sent successfully.');
+
     }
     
     

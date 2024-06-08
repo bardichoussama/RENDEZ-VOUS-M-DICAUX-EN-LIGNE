@@ -26,6 +26,7 @@ return new class extends Migration
             $table->text('allergies')->nullable();
             $table->enum('blood_type', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])->nullable()->change();
             $table->string('city')->nullable();
+            $table->enum('gender', ['MALE', 'FEMALE'])->nullable();
             $table->string('address')->nullable();
             $table->string('facebook')->nullable();
             $table->string('linkedin')->nullable();

@@ -57,18 +57,17 @@
             <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th scope="col" class="px-4 py-3">Id Appointment</th>
+                        <th scope="col" class="px-4 py-3 ">Id App</th>
                         <th scope="col" class="px-4 py-3">Patient Full Name</th>
-                        <th scope="col" class="px-4 py-3">Patient Email</th>
-                        <th scope="col" class="px-4 py-3">Appointment Date</th>
+                        <th scope="col" class="px-4 py-3">Email</th>
+                        <th scope="col" class="px-4 py-3">Date</th>
                         <th scope="col" class="px-4 py-3">Start Time</th>
                         <th scope="col" class="px-4 py-3">End Time</th>
-                        <th scope="col" class="px-4 py-3">Consultation Price</th>
+                        <th scope="col" class="px-4 py-3">Price</th>
                         <th scope="col" class="px-4 py-3">Status</th>
                         <th scope="col" class="px-4 py-3">Meeting Link</th>
-                        @if ($status == 'cancelled')
-                            <th scope="col" class="px-4 py-3">Message of Reject</th>
-                        @endif
+                        <th scope="col" class="px-4 py-3">Message of Reject</th>
+                  
                     </tr>
                 </thead>
                 <tbody>
@@ -77,7 +76,7 @@
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">#{{ $appointment->appointment_id }}</td>
                             <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $appointment->patient->first_name }} {{ $appointment->patient->last_name }}
+                                {{ $appointment->patient->firstname }} {{ $appointment->patient->lastname }}
                             </td>
                             <td class="px-6 py-4">{{ $appointment->patient->email }}</td>
                             @php
@@ -86,14 +85,10 @@
                                 $endTime = $startTime->copy()->addMinutes($duration);
                                 $now = \Carbon\Carbon::now();
                             @endphp
+                              
                             <td class="px-6 py-4">{{ $appointment->appointment_date }}</td>
-                            @if ($appointment->status !== 'pending')
-                                <td class="px-6 py-4">{{ \Carbon\Carbon::parse($startTime)->format('H:i') }}</td>
-                                <td class="px-6 py-4">{{ \Carbon\Carbon::parse($endTime)->format('H:i') }}</td>
-                            @else
-                                <td class="px-6 py-4">-</td>
-                                <td class="px-6 py-4">-</td>
-                            @endif
+                            <td class="px-6 py-4">{{ $appointment->status !== 'pending' && $appointment->status !== 'cancelled' ? $startTime->format('H:i') : '-' }}</td>
+                            <td class="px-6 py-4">{{ $appointment->status !== 'pending' && $appointment->status !== 'cancelled' ? $endTime->format('H:i') : '-' }}</td>
                             <td class="px-6 py-4">{{ $appointment->price }} $</td>
                             <td class="px-6 py-4">
                                 @if ($appointment->status == 'pending')
@@ -117,9 +112,8 @@
                                     -
                                 @endif
                             </td>
-                            @if ($status == 'cancelled')
-                                <td class="px-6 py-4">{{ $appointment->reject_reason }}</td>
-                            @endif
+                            <td class="px-6 py-4">{{ $appointment->reject_reason }}</td>
+                            
                         </tr>
                     @endforeach
                 </tbody>
