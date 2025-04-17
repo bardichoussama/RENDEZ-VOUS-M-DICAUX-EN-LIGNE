@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-class PatientsRequests extends Controller
+class PatientsRequestsController extends Controller
 {
     public function index()
     {

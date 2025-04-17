@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use Illuminate\Http\Request;
-use App\Models\Doctor; // Assuming Doctor model exists
+use Illuminate\Support\Facades\Session;
 
-class DoctorSignup extends Controller
+class PatientSignupController extends Controller
 {
-    public function index()
-    {
-        return view('authentication.doctor.doctorSignup');
-    }
+   public function index(){
 
-    public function store(Request $request)
+    return view('authentication.patient.patientSignup');
+
+   }
+   public function store(Request $request)
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
@@ -25,9 +26,9 @@ class DoctorSignup extends Controller
         ]);
     
         // Create a new Doctor instance with the validated data and save it to the database
-        Doctor::create([
-            'first_name' => $validatedData['firstname'],
-            'last_name' => $validatedData['lastname'],
+        Patient::create([
+            'firstname' => $validatedData['firstname'],
+            'lastname' => $validatedData['lastname'],
             'email' => $validatedData['email'],
             'phone' => $validatedData['phone'],
             'password' => bcrypt($validatedData['password']), // Hash the password for security
@@ -35,7 +36,6 @@ class DoctorSignup extends Controller
         ]);
     
    
-        return redirect()->route('doctorLoginView')->with('success', 'Your account has been created successfully.');
+        return redirect()->route('patientLoginView')->with('success', 'Your account has been created successfully.');
     }
-    
 }

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\CssSelector\Node\Specificity;
 
-class DoctorSettings extends Controller
+class DoctorSettingsController extends Controller
 {
     public function index()
     {

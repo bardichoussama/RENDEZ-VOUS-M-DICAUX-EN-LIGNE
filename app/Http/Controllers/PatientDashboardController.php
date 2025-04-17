@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
-class PatientDashboard extends Controller
+class PatientDashboardController extends Controller
 {
     public function index()
     {

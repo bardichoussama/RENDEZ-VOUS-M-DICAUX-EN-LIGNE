@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
-class PatientSettings extends Controller
+class PatientSettingsController extends Controller
 {
     public function index()
     {

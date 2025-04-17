@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 
-class DoctorAppointments extends Controller
+class DoctorAppointmentsController extends Controller
 {
    public function index(Request $request)
     {

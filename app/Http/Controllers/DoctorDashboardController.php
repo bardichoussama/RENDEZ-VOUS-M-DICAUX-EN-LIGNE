@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-class DoctorDashboard extends Controller
+class DoctorDashboardController extends Controller
 {
     public function index()
     {
